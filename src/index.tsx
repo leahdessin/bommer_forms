@@ -1,15 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import BommerTailsHeader from './components/structure/BommerTailsHeader';
+import BommerContentPane from './components/structure/BommerContentPane';
 import reportWebVitals from './reportWebVitals';
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    padding: 0;
+    outline:0;
+    box-sizing:border-box;
+    font-family: 'Inter', 'Open Sans', sans-serif;
+    height: 100vh;
+    background-color: rgb(0,20,36);
+    color: #fff;
+  }
+  #root{
+    margin:0 auto;
+    height: 100%;
+  }
+`
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+    document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+      <GlobalStyle />
+      <BommerTailsHeader />
+      <BommerContentPane />
   </React.StrictMode>
 );
 
