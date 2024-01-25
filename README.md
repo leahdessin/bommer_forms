@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# bommer_tails
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+`bommer_tails` is a log dissection app that allows users to search through app-specific logs on any system.
 
 ## Available Scripts
 
