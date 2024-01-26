@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing:border-box;
     font-family: 'Inter', 'Open Sans', sans-serif;
     height: 100vh;
-    background-color: rgb(0,20,36);
+    background-color: #111;
     color: #fff;
   }
   #root{
@@ -29,8 +29,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
       <GlobalStyle />
-      <BommerTailsHeader />
-      <BommerContentPane />
+      // theme provider here
+          <BommerTailsHeader />
+          <BommerContentPane />
   </React.StrictMode>
 );
 

@@ -9,7 +9,7 @@ const StyledThead = styled.thead`
 `;
 
 const StyledTh = styled.th`
-  padding-right: 8px;
+  padding-right: 14px;
   min-width: 20px;
   vertical-align: bottom;
   text-align: left;
@@ -20,7 +20,7 @@ export default function BommerLogTableHeader(){
         <StyledThead>
             <tr>
                 <StyledTh></StyledTh>
-                <StyledTh>Line Number</StyledTh>
+                <StyledTh>Line</StyledTh>
                 <StyledTh>Severity</StyledTh>
                 <StyledTh>Timestamp</StyledTh>
                 <StyledTh>Origin</StyledTh>
