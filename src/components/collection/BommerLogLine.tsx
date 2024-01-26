@@ -12,6 +12,7 @@ const StyledLogLine = styled.tr`
 const LogField = styled.td`
     overflow-wrap: break-word;
     background-color: #333;
+    max-width: 300px;
 
     ${StyledLogLine}:hover & {
         background-color: #666;
@@ -38,6 +39,14 @@ const StyledSpan = styled.span<{ $severityColor?: string; }>`
     border-radius: 10px;
     text-transform: capitalize;
     text-align: center;
+`;
+
+const LogDetailSpan = styled.span<{ $showFullLog?: boolean; }>`
+    display: inline-block;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: ${props => props.$showFullLog ? 'normal' : 'nowrap'};
+    overflow: ${props => props.$showFullLog ? 'unset' : 'hidden'};
 `;
 
 
@@ -77,7 +86,9 @@ function BommerLogLine(props: BommerLogLineProps) {
             <LogField>{props.timestamp}</LogField>
             <LogField>{props.methodOrigin}</LogField>
             <LogField>{props.threadOrigin}</LogField>
-            <LogField>{props.logDetail}</LogField>
+            <LogField>
+                <LogDetailSpan $showFullLog={isExpanded}>{props.logDetail}</LogDetailSpan>
+            </LogField>
         </StyledLogLine>
     );
 }

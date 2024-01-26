@@ -29,7 +29,6 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
       <GlobalStyle />
-      // theme provider here
           <BommerTailsHeader />
           <BommerContentPane />
   </React.StrictMode>

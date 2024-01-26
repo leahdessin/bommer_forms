@@ -2,17 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledThead = styled.thead`
-  font-size: 15px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 `;
 
 const StyledTh = styled.th`
-  padding-right: 14px;
-  min-width: 20px;
-  vertical-align: bottom;
-  text-align: left;
+    padding-right: 14px;
+    min-width: 20px;
+    vertical-align: bottom;
+    text-align: left;
+    cursor: pointer;
 `;
 
 export default function BommerLogTableHeader(){
