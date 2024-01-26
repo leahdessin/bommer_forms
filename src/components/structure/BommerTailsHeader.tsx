@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import BommerLogSearchBar from '../collection/BommerLogSearchBar';
 
 const StyledHeader = styled.header`
     flex: 1;
@@ -10,24 +11,10 @@ const StyledHeader = styled.header`
     height: 20%;
 `;
 
-const SearchInput = styled.input`
-    width: 50%;
-    height: 40px;
-    border: 2px solid rgb(0,87,155);
-    border-radius: 12px;
-    padding: 4px 8px;
-    font-size: 25px;
-  
-    &:focus {
-      border: 4px solid rgb(0,116,206);
-      outline: rgb(0,116,206);
-    }
-`;
-
 function BommerTailsHeader() {
     return (
         <StyledHeader>
-            <SearchInput />
+            <BommerLogSearchBar />
         </StyledHeader>
     );
 }

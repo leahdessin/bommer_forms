@@ -5,6 +5,8 @@ import BommerTailsHeader from './components/structure/BommerTailsHeader';
 import BommerContentPane from './components/structure/BommerContentPane';
 import reportWebVitals from './reportWebVitals';
 import { createGlobalStyle } from 'styled-components';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -28,9 +30,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-      <GlobalStyle />
+      <Provider store={store}>
+          <GlobalStyle />
           <BommerTailsHeader />
           <BommerContentPane />
+      </Provider>
   </React.StrictMode>
 );
 
