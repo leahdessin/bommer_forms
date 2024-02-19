@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import BommerTailsHeader from './components/structure/BommerTailsHeader';
-import BommerContentPane from './components/structure/BommerContentPane';
+import BommerTailsHeader from './components/collection/BommerTailsHeader';
 import reportWebVitals from './reportWebVitals';
 import { createGlobalStyle } from 'styled-components';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import BommerLogTable from "./components/collection/BommerLogTable";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -20,8 +20,10 @@ const GlobalStyle = createGlobalStyle`
     color: #fff;
   }
   #root{
-    margin:0 auto;
+    margin: 0;
     height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
   }
 `
 
@@ -33,7 +35,7 @@ root.render(
       <Provider store={store}>
           <GlobalStyle />
           <BommerTailsHeader />
-          <BommerContentPane />
+          <BommerLogTable />
       </Provider>
   </React.StrictMode>
 );

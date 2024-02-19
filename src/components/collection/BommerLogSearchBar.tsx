@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
+import {useAppDispatch, useAppSelector} from "../../hooks";
 
 const SearchInput = styled.input`
     width: 50%;
@@ -18,6 +19,9 @@ const SearchInput = styled.input`
 
 export default function BommerLogSearchBar(){
     const [searchInput, setSearchInput] = useState("");
+
+    const logLines = useAppSelector((state) => state.logLinesStateSlice.logLines);
+    const dispatch = useAppDispatch();
 
     const handleSearch = (e:any) => {
         e.preventDefault();

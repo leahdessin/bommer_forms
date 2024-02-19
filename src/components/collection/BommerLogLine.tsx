@@ -1,31 +1,20 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleRight,faAngleDown } from '@fortawesome/free-solid-svg-icons'
+import {StyledRow, StyledCell} from '../styles/TableElements';
 
-const StyledLogLine = styled.tr`
+const StyledLogLine = styled(StyledRow)`
     font-family: 'Consolas', serif;
-    padding: 3px;
-    border-top: 3px solid #111;
+    border-top: 1px solid #555;
+    
+    &:hover {
+        background-color: #444;
+    }
 `;
 
-const LogField = styled.td`
+const LogField = styled(StyledCell)`
     overflow-wrap: break-word;
-    background-color: #333;
-    max-width: 300px;
-
-    ${StyledLogLine}:hover & {
-        background-color: #666;
-    }
-
-    &:first-child {
-        border-top-left-radius: 6px;
-        border-bottom-left-radius: 6px;
-    }
-    &:last-child {
-        border-top-right-radius: 6px;
-        border-bottom-right-radius: 6px;
-    }
+    max-width: 700px;
+    height: 100%;
 `;
 
 const StyledSpan = styled.span<{ $severityColor?: string; }>`
@@ -35,7 +24,7 @@ const StyledSpan = styled.span<{ $severityColor?: string; }>`
     display: inline-block;
     width: 53px;
     color: ${props => props.$severityColor};
-    background-color: #333;
+    background-color: #111;
     border-radius: 10px;
     text-transform: capitalize;
     text-align: center;
@@ -74,9 +63,6 @@ function BommerLogLine(props: BommerLogLineProps) {
 
     return (
         <StyledLogLine onClick={() => {setExpanded(!isExpanded)}}>
-            <LogField>
-                <FontAwesomeIcon icon={isExpanded ? faAngleDown : faAngleRight } />
-            </LogField>
             <LogField>{props.lineNumber}</LogField>
             <LogField>
                 <StyledSpan $severityColor={severityLookup[props.severity]}>

@@ -20,7 +20,6 @@ export default function BommerLogTableHeader(){
     return (
         <StyledThead>
             <tr>
-                <StyledTh></StyledTh>
                 <StyledTh>Line</StyledTh>
                 <StyledTh>Severity</StyledTh>
                 <StyledTh>Timestamp</StyledTh>
@@ -29,5 +28,5 @@ export default function BommerLogTableHeader(){
                 <StyledTh>Message</StyledTh>
             </tr>
         </StyledThead>
-    )
+    );
 }
