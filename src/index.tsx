@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { createGlobalStyle } from 'styled-components';
 import { Provider } from 'react-redux';
 import { store } from './store';
-import BommerLogTable from "./components/collection/BommerLogTable";
+import BommerLogTable from "./components/collection/BommerLogTable/BommerLogTable";
 
 const GlobalStyle = createGlobalStyle`
   body {

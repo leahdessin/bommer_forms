@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import {StyledRow, StyledCell} from '../styles/TableElements';
+import {useAppSelector} from '../../hooks';
 
 const StyledLogLine = styled(StyledRow)`
     font-family: 'Consolas', serif;
@@ -38,6 +39,12 @@ const LogDetailSpan = styled.span<{ $showFullLog?: boolean; }>`
     overflow: ${props => props.$showFullLog ? 'unset' : 'hidden'};
 `;
 
+const HighlightedSearchText = styled.span`
+    font-weight: 600;
+    color: black;
+    background-color: white;
+`;
+
 
 export interface BommerLogLineProps {
     lineNumber: number,
@@ -46,6 +53,8 @@ export interface BommerLogLineProps {
     methodOrigin: string,
     threadOrigin: string,
     logDetail: string,
+    show: boolean,
+    highlight: boolean,
 }
 
 const severityLookup:{[key:string]: string} = {
@@ -57,8 +66,34 @@ const severityLookup:{[key:string]: string} = {
     'FATAL': '#ff6161',
     'NOTICE': '#969696',
 }
-function BommerLogLine(props: BommerLogLineProps) {
 
+interface TextWithHighlightingProps {
+    text:string,
+    substring:string,
+    isLogLineExpanded: boolean,
+}
+function TextWithHighlighting(props:TextWithHighlightingProps) {
+    const normalizedText = props.text.normalize();
+    const normalizedSubstring = props.substring.normalize();
+    const inx = normalizedText.indexOf(normalizedSubstring);
+    if (inx < 0) {
+        return (<LogDetailSpan>{props.text}</LogDetailSpan>)
+    }
+    const before = props.text.substring(0, inx);
+    const during = props.text.substring(inx, inx + props.substring.length);
+    const after = props.text.substring(inx + props.substring.length);
+
+    return (
+        <LogDetailSpan $showFullLog={props.isLogLineExpanded}>
+            {before}
+            <HighlightedSearchText>{during}</HighlightedSearchText>
+            {after}
+        </LogDetailSpan>
+    )
+}
+
+function BommerLogLine(props: BommerLogLineProps) {
+    const searchTerm = useAppSelector((state) => state.logLinesStateSlice.searchTerm);
     const [isExpanded, setExpanded] = useState(false);
 
     return (
@@ -73,7 +108,7 @@ function BommerLogLine(props: BommerLogLineProps) {
             <LogField>{props.methodOrigin}</LogField>
             <LogField>{props.threadOrigin}</LogField>
             <LogField>
-                <LogDetailSpan $showFullLog={isExpanded}>{props.logDetail}</LogDetailSpan>
+                <TextWithHighlighting isLogLineExpanded={isExpanded} text={props.logDetail} substring={searchTerm} />
             </LogField>
         </StyledLogLine>
     );

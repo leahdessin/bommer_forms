@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
-import {useAppDispatch, useAppSelector} from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { searchLogLines } from "../../logLineSlice";
 
 const SearchInput = styled.input`
     width: 50%;
@@ -18,20 +19,20 @@ const SearchInput = styled.input`
 
 
 export default function BommerLogSearchBar(){
-    const [searchInput, setSearchInput] = useState("");
+    const searchTerm = useAppSelector((state) => state.logLinesStateSlice.searchTerm);
 
     const logLines = useAppSelector((state) => state.logLinesStateSlice.logLines);
     const dispatch = useAppDispatch();
 
     const handleSearch = (e:any) => {
         e.preventDefault();
-        setSearchInput(e.target.value);
+        dispatch(searchLogLines(e.target.value));
     }
     return (
         <SearchInput
             type='search'
             placeholder='search for log entries...'
-            value={searchInput}
+            value={searchTerm}
             onChange={handleSearch}
         />
     )
